@@ -1,0 +1,5 @@
+CLASS zbp_r_tbet_upl_file1 DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zr_tbet_upl_file1.
+ENDCLASS.
+
+CLASS zbp_r_tbet_upl_file1 IMPLEMENTATION.
+ENDCLASS.

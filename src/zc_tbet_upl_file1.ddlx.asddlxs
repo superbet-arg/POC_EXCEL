@@ -1,0 +1,234 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: { typeName: 'ID Upload',
+                typeNamePlural: 'ID Upload',
+                title: { type: #STANDARD, label: 'Id Upload', value: 'IdUpload' } } }
+                 
+annotate entity ZC_TBET_UPL_FILE1 with
+{
+  @UI.facet: [
+//      /* Header Fecets and Datapoints */
+//      { purpose: #HEADER,             
+//        id:'HDR_USER',        
+//        type: #DATAPOINT_REFERENCE,      
+//        position: 10, 
+//        targetQualifier: 'end_user'                                             },
+//      { purpose: #HEADER,             
+//        id:'HDR_FILE',        
+//        type: #DATAPOINT_REFERENCE,      
+//        position: 20, 
+//        targetQualifier: 'Local_Last_Changed_At'                                },
+//      { purpose: #HEADER,             
+//        id:'HDR_STATUS',      
+//        type: #DATAPOINT_REFERENCE,      
+//        position: 30, 
+//        targetQualifier: 'status'                                               },
+  //**----  Body facets
+      { label: 'File Information',    
+        id: 'Attachment',     
+        type: #COLLECTION,               
+        position: 10                                                                        },
+      { label: 'Invoice Details',     
+        id: 'Invoicedet',     
+        type: #IDENTIFICATION_REFERENCE, 
+        position: 10,                             
+        parentId: 'File',        
+        purpose: #STANDARD },
+      { id: 'Upload',         
+        type: #FIELDGROUP_REFERENCE,     
+        position: 20  ,
+        targetQualifier: 'Upload', 
+        parentId: 'Attachment',  
+        purpose: #STANDARD },
+
+  //** --- Excel data Facet **
+      { label: 'Excel Data',          
+        id: 'Data',           
+        type: #LINEITEM_REFERENCE,       
+        position: 30,  
+        targetElement: '_fileres', 
+        parentId: 'Attachment', 
+        purpose: #STANDARD } ]// , hidden: #(HideExcel) } ]
+
+
+  @UI: { lineItem:       [ { position: 10, 
+                             importance: #HIGH , 
+                             label: 'Person Responsible'}
+//                             { type: #FOR_ACTION, dataAction: 'readFile', label: 'Read File' }   
+] ,
+         identification: [ { position: 10 , 
+                             label: 'Person Responsible' } 
+//                           { type: #FOR_ACTION, dataAction: 'readFile', label: 'Read File' } 
+                             ],
+                     //      { type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Validate and Show' } ] ,
+         dataPoint:        { title: 'Responsible Person', targetValueElement: 'IdUpload' } }
+  IdUpload;
+  @UI: { fieldGroup:     [ { position: 50, qualifier: 'Status' , label: 'Attachment'} ]}
+  @UI: { identification: [ { position: 30 , label: 'Status' } ] }
+  Status;
+  @UI: { fieldGroup:     [ { position: 50, qualifier: 'Upload' , label: 'Attachment'} ]}
+  @UI: { identification: [ { position: 30 , label: 'File' } ] }
+  Attachment; 
+
+  @UI.hidden: true
+  Mimetype;
+
+  @UI.hidden: true
+  Filename;
+  
+  @UI: { dataPoint:{ title: 'Last Action On', targetValueElement: 'LocalLastChangedAt' } }
+  LocalLastChangedAt;
+
+}
+
+//@Metadata.layer: #CORE
+//@UI.headerInfo.title.type: #STANDARD
+//@UI.headerInfo.title.value: 'IdUpload'
+//@UI.headerInfo.description.type: #STANDARD
+//@UI.headerInfo.description.value: 'IdUpload'
+//
+//annotate view ZC_TBET_UPL_FILE1 with
+//{ 
+//  @EndUserText.label: 'IdUpload'
+//  @UI.facet: [ {
+//    label: 'General Information', 
+//    id: 'GeneralInfo', 
+//    purpose: #STANDARD, 
+//    position: 10 , 
+//    type: #IDENTIFICATION_REFERENCE
+//  } ]
+//  @UI.identification: [ {
+//    position: 10 , 
+//    label: 'IdUpload'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 10 , 
+//    label: 'IdUpload'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 10 
+//  } ]
+//  IdUpload;
+//  
+//  @EndUserText.label: 'Attachment'
+//  @UI.identification: [ {
+//    position: 20 , 
+//    label: 'Attachment'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 20 , 
+//    label: 'Attachment'
+//  } ]
+//  Attachment;
+//  
+//  @EndUserText.label: 'Mimetype'
+//  @UI.identification: [ {
+//    position: 30 , 
+//    label: 'Mimetype'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 30 , 
+//    label: 'Mimetype'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 30 
+//  } ]
+//  Mimetype;
+//  
+//  @EndUserText.label: 'Filename'
+//  @UI.identification: [ {
+//    position: 40 , 
+//    label: 'Filename'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 40 , 
+//    label: 'Filename'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 40 
+//  } ]
+//  Filename;
+//  
+//  @EndUserText.label: 'Status'
+//  @UI.identification: [ {
+//    position: 50 , 
+//    label: 'Status'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 50 , 
+//    label: 'Status'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 50 
+//  } ]
+//  Status;
+//  
+//  @EndUserText.label: 'ErrorLog'
+//  @UI.identification: [ {
+//    position: 60 , 
+//    label: 'ErrorLog'
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 60 , 
+//    label: 'ErrorLog'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 60 
+//  } ]
+//  ErrorLog;
+//  
+//  @UI.identification: [ {
+//    position: 70 
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 70 
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 70 
+//  } ]
+//  LocalCreatedBy;
+//  
+//  @UI.identification: [ {
+//    position: 80 
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 80 
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 80 
+//  } ]
+//  LocalCreatedAt;
+//  
+//  @UI.identification: [ {
+//    position: 90 
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 90 
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 90 
+//  } ]
+//  LocalLastChangedBy;
+//  
+//  @UI.identification: [ {
+//    position: 100 
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 100 
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 100 
+//  } ]
+//  LocalLastChangedAt;
+//  
+//  @UI.identification: [ {
+//    position: 110 
+//  } ]
+//  @UI.lineItem: [ {
+//    position: 110 
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 110 
+//  } ]
+//  LastChanged;
+//}

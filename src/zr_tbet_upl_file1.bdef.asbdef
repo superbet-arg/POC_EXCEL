@@ -1,0 +1,119 @@
+
+managed implementation in class ZBP_R_TBET_UPL_FILE1 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_TBET_UPL_FILE1 alias File
+persistent table ZTBET_UPL_FILE1
+draft table ZTBET_UPL_FLE1_D
+etag master LocalLastChangedAt
+lock master total etag LastChanged
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   IdUpload;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChanged;
+
+  field ( readonly : update )
+   IdUpload;
+
+
+  create;
+  update;
+  delete;
+
+  association _FileRes { create; with draft; }
+
+  // Logic to convert uploaded excel into internal table and save to the child entity is written here
+//  action ( features : instance ) uploadExcelData  result [1] $self;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+
+
+  mapping for ZTBET_UPL_FILE1
+  {
+    IdUpload = id_upload;
+    Attachment = attachment;
+    Mimetype = mimetype;
+    Filename = filename;
+    Status = status;
+    ErrorLog = error_log;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChanged = last_changed;
+  }
+}
+
+define behavior for ZR_TBET_FILE_RES1 alias FileRes
+persistent table ZTBET_FILE_DET1
+draft table ZTBET_FILE_DT1_D
+etag master LocalLastChangedAt
+lock dependent by _File
+authorization dependent by _File
+
+{
+  field ( mandatory : create )
+   IdUpload,
+   Bukrs,
+   Belnr,
+   Gjahr,
+   Buzei;
+
+  field ( readonly )
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChanged;
+
+  field ( readonly : update )
+   IdUpload,
+   Bukrs,
+   Belnr,
+   Gjahr,
+   Buzei;
+
+
+//  create;
+  update;
+  delete;
+
+  association _file { with draft; }
+
+//  draft action Activate optimized;
+//  draft action Discard;
+//  draft action Edit;
+//  draft action Resume;
+//  draft determine action Prepare;
+
+  mapping for ZTBET_FILE_DET1
+  {
+    IdUpload = id_upload;
+    Bukrs = bukrs;
+    Belnr = belnr;
+    Gjahr = gjahr;
+    Buzei = buzei;
+    Blart = blart;
+    Bldat = bldat;
+    Usnam = usnam;
+    Kostl = kostl;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChanged = last_changed;
+  }
+}
