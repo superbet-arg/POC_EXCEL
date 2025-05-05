@@ -1,4 +1,5 @@
-projection implementation in class ZBP_C_TBET_UPL_FILE1 unique;
+//projection implementation in class ZBP_C_TBET_UPL_FILE1 unique;
+projection;
 strict ( 2 );
 use draft;
 define behavior for ZC_TBET_UPL_FILE1 alias Files
@@ -15,7 +16,7 @@ use etag
   use action Resume;
   use action Prepare;
 
-      use association _fileres { create; with draft; }
+  use association _fileres { create; with draft; }
 
 }
 
@@ -23,15 +24,15 @@ define behavior for ZC_TBET_FILE_RES1 alias FileRes
 use etag
 
 {
-//  use create;
+  //  use create;
   use update;
   use delete;
 
   use association _file { with draft; }
 
-//  use action Edit;
-//  use action Activate;
-//  use action Discard;
-//  use action Resume;
-//  use action Prepare;
+  //  use action Edit;
+  //  use action Activate;
+  //  use action Discard;
+  //  use action Resume;
+  //  use action Prepare;
 }

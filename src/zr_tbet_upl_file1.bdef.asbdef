@@ -28,6 +28,8 @@ authorization master( global )
   update;
   delete;
 
+  determination saveDetails on save { field attachment; }
+
   association _FileRes { create; with draft; }
 
   // Logic to convert uploaded excel into internal table and save to the child entity is written here
