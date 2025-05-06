@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_TBET_MONITOR'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_TBET_MONITOR'
+  }
+}
+define service ZUI_TBET_MONITOR {
+  expose ZC_TBET_MONITOR;
+}

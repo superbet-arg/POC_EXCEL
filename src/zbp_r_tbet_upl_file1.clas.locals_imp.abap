@@ -27,7 +27,8 @@ CLASS lhc_File IMPLEMENTATION.
           lt_res          TYPE STANDARD TABLE OF ztbet_file_det1,
           lt_child        TYPE TABLE FOR CREATE zc_tbet_upl_file1\_fileres,
           wa_new_child    LIKE LINE OF lt_child,
-          lt_child_target LIKE wa_new_child-%target.
+          lt_child_target LIKE wa_new_child-%target,
+          lv_date type c LENGTH 10.
 
     READ ENTITIES OF zr_tbet_upl_file1 IN LOCAL MODE
                  ENTITY file
@@ -61,15 +62,23 @@ CLASS lhc_File IMPLEMENTATION.
                                                             wa_res-gjahr
                                                             wa_res-buzei
                                                             wa_res-blart
-                                                            wa_res-bldat
+                                                            lv_date
                                                             wa_res-usnam
                                                             wa_res-kostl.
 
       wa_res-id_upload = lt_inv[ 1 ]-idupload.
 
+      data(lv_day) = segment( val = lv_date sep = '.' index = 1 ).
+      data(lv_month) = segment( val = lv_date sep = '.' index = 2 ).
+      data(lv_year) = segment( val = lv_date sep = '.' index = 3 ).
+
+      wa_res-bldat = |{ lv_year }{ lv_month }{ lv_day }|.
+
       APPEND wa_res TO lt_res.
 
       MOVE-CORRESPONDING lt_res TO wa_new_child-%target.
+
+
 
     ENDLOOP.
 
