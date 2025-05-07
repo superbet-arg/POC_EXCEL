@@ -1,0 +1,29 @@
+managed; // implementation in class zbp_c_tbet_monitor1b unique;
+//strict ( 2 );
+
+define behavior for zc_tbet_monitor1b alias Monitor1b
+persistent table ztbet_monitor1
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly : update ) Bukrs, Belnr, Gjahr;
+
+    mapping for ZTBET_MONITOR1
+  {
+    Bukrs = bukrs;
+    Belnr = belnr;
+    Gjahr = gjahr;
+    Approvalstatus = approvalstatus;
+    S4status = s4status;
+    Tisstatus = tisstatus;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChanged = last_changed;
+  }
+}

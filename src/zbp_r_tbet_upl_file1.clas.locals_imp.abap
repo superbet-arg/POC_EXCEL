@@ -26,9 +26,10 @@ CLASS lhc_File IMPLEMENTATION.
           wa_res          TYPE ztbet_file_det1,
           lt_res          TYPE STANDARD TABLE OF ztbet_file_det1,
           lt_child        TYPE TABLE FOR CREATE zc_tbet_upl_file1\_fileres,
+          lt_mon          TYPE TABLE FOR CREATE zc_tbet_monitor1b,
           wa_new_child    LIKE LINE OF lt_child,
           lt_child_target LIKE wa_new_child-%target,
-          lv_date type c LENGTH 10.
+          lv_date         TYPE c LENGTH 10.
 
     READ ENTITIES OF zr_tbet_upl_file1 IN LOCAL MODE
                  ENTITY file
@@ -68,9 +69,9 @@ CLASS lhc_File IMPLEMENTATION.
 
       wa_res-id_upload = lt_inv[ 1 ]-idupload.
 
-      data(lv_day) = segment( val = lv_date sep = '.' index = 1 ).
-      data(lv_month) = segment( val = lv_date sep = '.' index = 2 ).
-      data(lv_year) = segment( val = lv_date sep = '.' index = 3 ).
+      DATA(lv_day) = segment( val = lv_date sep = '.' index = 1 ).
+      DATA(lv_month) = segment( val = lv_date sep = '.' index = 2 ).
+      DATA(lv_year) = segment( val = lv_date sep = '.' index = 3 ).
 
       wa_res-bldat = |{ lv_year }{ lv_month }{ lv_day }|.
 
@@ -78,10 +79,23 @@ CLASS lhc_File IMPLEMENTATION.
 
       MOVE-CORRESPONDING lt_res TO wa_new_child-%target.
 
-
+      append VALUE #(  bukrs = wa_res-bukrs
+                          belnr = wa_res-belnr
+                          gjahr =  wa_res-gjahr
+                          approvalstatus = 'Not Sent'
+                          s4status = 'Not Sent'
+                          tisstatus = 'Not Sent'
+                          %control = VALUE #(  Bukrs =  if_abap_behv=>mk-on
+                                               belnr =  if_abap_behv=>mk-on
+                                               gjahr =  if_abap_behv=>mk-on
+                                               approvalstatus =  if_abap_behv=>mk-on
+                                               s4status =  if_abap_behv=>mk-on
+                                               tisstatus =  if_abap_behv=>mk-on )
+                       ) to lt_mon.
 
     ENDLOOP.
 
+* Add records to Detail table
     LOOP AT wa_new_child-%target ASSIGNING FIELD-SYMBOL(<fs_child>).
       <fs_child>-%cid = |child-{ sy-tabix }|.
       <fs_child>-IdUpload = lt_inv[ 1 ]-%key-IdUpload.
@@ -109,6 +123,17 @@ CLASS lhc_File IMPLEMENTATION.
         FAILED DATA(ls_failed_crt)
         REPORTED DATA(ls_reported_crt)
         MAPPED DATA(ls_mapped_crt).
+
+
+* Add entries in monitor table
+
+
+    MODIFY ENTITIES OF zc_tbet_monitor1b entity Monitor1b
+    CREATE
+    AUTO FILL CID WITH lt_mon
+        FAILED DATA(ls_failed_crt_mon)
+        REPORTED DATA(ls_reported_crt_mon)
+        MAPPED DATA(ls_mapped_crt_mon).
 
     IF 1 = 2. ENDIF.
 

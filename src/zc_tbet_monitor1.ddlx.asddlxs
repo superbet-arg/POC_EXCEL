@@ -1,11 +1,11 @@
 @Metadata.layer: #CORE
 @UI.headerInfo.title.type: #STANDARD
-@UI.headerInfo.title.value: 'IdUpload'
+@UI.headerInfo.title.value: 'Bukrs'
 @UI.headerInfo.description.type: #STANDARD
-@UI.headerInfo.description.value: 'IdUpload'
-annotate view ZC_TBET_FILE_RES1 with
+@UI.headerInfo.description.value: 'Bukrs'
+annotate view ZC_TBET_MONITOR1 with
 {
-  @EndUserText.label: 'IdUpload'
+  @EndUserText.label: 'Bukrs'
   @UI.facet: [ {
     label: 'General Information', 
     id: 'GeneralInfo', 
@@ -15,185 +15,143 @@ annotate view ZC_TBET_FILE_RES1 with
   } ]
   @UI.identification: [ {
     position: 10 , 
-    label: 'Id Upload'
+    label: 'Company Code'
   } ]
   @UI.lineItem: [ {
     position: 10 , 
-    label: 'Id Upload'
+    label: 'Company Code'
   } ]
   @UI.selectionField: [ {
     position: 10 
-  } ]
-  IdUpload;
-  
-  @EndUserText.label: 'Company Code'
-  @UI.identification: [ {
-    position: 20 , 
-    label: 'Company Code'
-  } ]
-  @UI.lineItem: [ {
-    position: 20 , 
-    label: 'Company Code'
-  } ]
-  @UI.selectionField: [ {
-    position: 20 
   } ]
   Bukrs;
   
   @EndUserText.label: 'Document No.'
   @UI.identification: [ {
-    position: 30 , 
+    position: 20 , 
     label: 'Document No.'
   } ]
   @UI.lineItem: [ {
-    position: 30 , 
+    position: 20 , 
     label: 'Document No.'
   } ]
   @UI.selectionField: [ {
-    position: 30 
+    position: 20 
   } ]
   Belnr;
   
   @EndUserText.label: 'Fiscal Year'
   @UI.identification: [ {
-    position: 40 , 
+    position: 30 , 
     label: 'Fiscal Year'
   } ]
   @UI.lineItem: [ {
-    position: 40 , 
+    position: 30 , 
     label: 'Fiscal Year'
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  Gjahr;
+  
+  @EndUserText.label: 'Approval Status'
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Approval Status'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 , 
+    label: 'Approval Status'
   } ]
   @UI.selectionField: [ {
     position: 40 
   } ]
-  Gjahr;
+  Approvalstatus;
   
-  @EndUserText.label: 'Item'
+  @EndUserText.label: 'S4 Status'
   @UI.identification: [ {
     position: 50 , 
-    label: 'Item'
+    label: 'S4 Status'
   } ]
   @UI.lineItem: [ {
     position: 50 , 
-    label: 'Item'
+    label: 'S4 Status'
   } ]
   @UI.selectionField: [ {
     position: 50 
   } ]
-  Buzei;
+  S4status;
   
-  @EndUserText.label: 'Document Type'
+  @EndUserText.label: 'TIS Status'
   @UI.identification: [ {
     position: 60 , 
-    label: 'Document Type'
+    label: 'TTIS Status'
   } ]
   @UI.lineItem: [ {
     position: 60 , 
-    label: 'Document Type'
+    label: 'TIS Status'
   } ]
   @UI.selectionField: [ {
     position: 60 
   } ]
-  Blart;
-  
-  @EndUserText.label: 'Document Date'
-  @UI.identification: [ {
-    position: 70 , 
-    label: 'Document Date'
-  } ]
-  @UI.lineItem: [ {
-    position: 70 , 
-    label: 'Document Date'
-  } ]
-  @UI.selectionField: [ {
-    position: 70 
-  } ]
-  Bldat;
-  
-  @EndUserText.label: 'User name'
-  @UI.identification: [ {
-    position: 80 , 
-    label: 'User name'
-  } ]
-  @UI.lineItem: [ {
-    position: 80 , 
-    label: 'User name'
-  } ]
-  @UI.selectionField: [ {
-    position: 80 
-  } ]
-  Usnam;
-  
-  @EndUserText.label: 'Cost Center'
-  @UI.identification: [ {
-    position: 90 , 
-    label: 'Cost Center'
-  } ]
-  @UI.lineItem: [ {
-    position: 90 , 
-    label: 'Cost Center'
-  } ]
-  @UI.selectionField: [ {
-    position: 90 
-  } ]
-  Kostl;
+  Tisstatus;
   
 //  @UI.identification: [ {
-//    position: 100 
+//    position: 70 
 //  } ]
 //  @UI.lineItem: [ {
-//    position: 100 
+//    position: 70 
 //  } ]
 //  @UI.selectionField: [ {
-//    position: 100 
+//    position: 70 
 //  } ]
   @UI.hidden: true
   LocalCreatedBy;
   
 //  @UI.identification: [ {
-//    position: 110 
+//    position: 80 
 //  } ]
 //  @UI.lineItem: [ {
-//    position: 110 
+//    position: 80 
 //  } ]
 //  @UI.selectionField: [ {
-//    position: 110 
+//    position: 80 
 //  } ]
   @UI.hidden: true
   LocalCreatedAt;
   
 //  @UI.identification: [ {
-//    position: 120 
+//    position: 90 
 //  } ]
 //  @UI.lineItem: [ {
-//    position: 120 
+//    position: 90 
 //  } ]
 //  @UI.selectionField: [ {
-//    position: 120 
+//    position: 90 
 //  } ]
   @UI.hidden: true
   LocalLastChangedBy;
   
 //  @UI.identification: [ {
-//    position: 130 
+//    position: 100 
 //  } ]
 //  @UI.lineItem: [ {
-//    position: 130 
+//    position: 100 
 //  } ]
 //  @UI.selectionField: [ {
-//    position: 130 
+//    position: 100 
 //  } ]
   @UI.hidden: true
   LocalLastChangedAt;
   
 //  @UI.identification: [ {
-//    position: 140 
+//    position: 110 
 //  } ]
 //  @UI.lineItem: [ {
-//    position: 140 
+//    position: 110 
 //  } ]
 //  @UI.selectionField: [ {
-//    position: 140 
+//    position: 110 
 //  } ]
   @UI.hidden: true
   LastChanged;

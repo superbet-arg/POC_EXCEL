@@ -1,7 +1,7 @@
 @Metadata.layer: #CORE
 @UI: {
-  headerInfo: { typeName: 'ID Upload',
-                typeNamePlural: 'ID Upload',
+  headerInfo: { typeName: 'Uploads',
+                typeNamePlural: 'Uploads',
                 title: { type: #STANDARD, label: 'Id Upload', value: 'IdUpload' } } }
                  
 annotate entity ZC_TBET_UPL_FILE1 with
@@ -53,20 +53,18 @@ annotate entity ZC_TBET_UPL_FILE1 with
 
   @UI: { lineItem:       [ { position: 10, 
                              importance: #HIGH , 
-                             label: 'Person Responsible'}
-//                             { type: #FOR_ACTION, dataAction: 'readFile', label: 'Read File' }   
-] ,
+                             label: 'ID Upload'} ] ,
          identification: [ { position: 10 , 
-                             label: 'Person Responsible' } 
-//                           { type: #FOR_ACTION, dataAction: 'readFile', label: 'Read File' } 
-                             ],
-                     //      { type: #FOR_ACTION, dataAction: 'uploadExcelData', label: 'Validate and Show' } ] ,
-         dataPoint:        { title: 'Responsible Person', targetValueElement: 'IdUpload' } }
+                             label: 'ID Upload' }  ],
+         dataPoint:        { title: 'ID Upload', targetValueElement: 'IdUpload' } }
   IdUpload;
-  @UI: { fieldGroup:     [ { position: 50, qualifier: 'Status' , label: 'Attachment'} ]}
-  @UI: { identification: [ { position: 30 , label: 'Status' } ] }
-  Status;
-  @UI: { fieldGroup:     [ { position: 50, qualifier: 'Upload' , label: 'Attachment'} ]}
+  
+//  @UI: { fieldGroup:     [ { position: 20, qualifier: 'Status' , label: 'Attachment'} ]}
+//  @UI: { identification: [ { position: 20 , label: 'Status' } ]  }
+  @UI.hidden: true
+   Status;
+   
+  @UI: { fieldGroup:     [ { position: 30, qualifier: 'Upload' , label: 'Attachment'} ]}
   @UI: { identification: [ { position: 30 , label: 'File' } ] }
   Attachment; 
 
@@ -76,9 +74,22 @@ annotate entity ZC_TBET_UPL_FILE1 with
   @UI.hidden: true
   Filename;
   
-  @UI: { dataPoint:{ title: 'Last Action On', targetValueElement: 'LocalLastChangedAt' } }
-  LocalLastChangedAt;
 
+  @UI: { lineItem:       [ { position: 40, 
+                             importance: #HIGH , 
+                             label: 'Changed By'} ] ,
+         identification: [ { position: 40 , 
+                             label: 'Changed By' }  ],
+         dataPoint:        { title: 'Changed By', targetValueElement: 'LocalLastChangedBy' } }
+  LocalLastChangedBy;
+//  
+  @UI: { lineItem:       [ { position: 50, 
+                             importance: #HIGH , 
+                             label: 'Changed At'} ] ,
+         identification: [ { position: 50 , 
+                             label: 'Changed At' }  ],
+         dataPoint:        { title: 'Changed At', targetValueElement: 'LocalLastChangedAt' } }
+  LocalLastChangedAt;
 }
 
 //@Metadata.layer: #CORE
